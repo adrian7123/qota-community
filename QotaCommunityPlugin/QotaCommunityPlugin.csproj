@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CounterStrikeSharp.API" Version="1.0.144" />
+    <PackageReference Include="SocketIOClient" Version="3.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CounterStrikeSharp.API">
+      <HintPath>/game/csgo/addons/counterstrikesharp/api/CounterStrikeSharp.API.dll</HintPath>
+    </Reference>
+    <Reference Include="SocketIOClient" Version="3.0.6">
+      <HintPath>./SocketIOClient.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
