@@ -15,8 +15,5 @@
 
   <ItemGroup>
     <PackageReference Include="CounterStrikeSharp.API" Version="1.0.144" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.1" />
-    <PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
-    <PackageReference Include="SocketIOClient" Version="3.0.6" />
   </ItemGroup>
 </Project>
