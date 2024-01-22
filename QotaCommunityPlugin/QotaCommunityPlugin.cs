@@ -12,14 +12,14 @@ namespace QotaCommunityPlugin;
 [MinimumApiVersion(80)]
 public class QotaCommunityPlugin : BasePlugin
 {
-  public override string ModuleName => "Qota Community Plugin";
-  public override string ModuleVersion => "0.0.1";
-  public override string ModuleAuthor => "CounterStrikeSharp";
+  public override string ModuleName => "Qota Community";
+  public override string ModuleVersion => "0.0.2";
+  public override string ModuleAuthor => "https://github.com/adrian7123";
   public override string ModuleDescription => "Qota Community Plugin";
 
   public override void Load(bool hotReload)
   {
-    Logger.LogInformation("Qota Community Plugin loading2!");
+    Logger.LogInformation("Qota Community Plugin loading!");
   }
 
   [ConsoleCommand("qc_set_all_to_spec", "@Qota Community Set All Players to Spec")]
