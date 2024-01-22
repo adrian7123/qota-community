@@ -14,7 +14,7 @@ public class QotaCommunityPlugin : BasePlugin
 {
   public override string ModuleName => "Qota Community";
   public override string ModuleVersion => "0.0.2";
-  public override string ModuleAuthor => "https://github.com/adrian7123";
+  public override string ModuleAuthor => "https://github.com/adrian7123 (Adrian Bueno)";
   public override string ModuleDescription => "Qota Community Plugin";
 
   public override void Load(bool hotReload)
