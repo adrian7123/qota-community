@@ -15,7 +15,7 @@ public class QotaCommunityPlugin : BasePlugin
 {
   public override string ModuleName => "Qota Community Plugin";
   public override string ModuleVersion => "0.0.1";
-  public override string ModuleAuthor => "CounterStrikeSharp & Socket IO";
+  public override string ModuleAuthor => "CounterStrikeSharp";
   public override string ModuleDescription => "Qota Community Plugin";
 
   public override void Load(bool hotReload)
