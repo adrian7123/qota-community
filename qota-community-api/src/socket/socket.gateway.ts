@@ -6,7 +6,7 @@ import {
 import { Socket } from 'socket.io';
 import { SocketService } from './socket.service';
 
-@WebSocketGateway()
+@WebSocketGateway(3033)
 export class SocketGateway implements OnGatewayConnection {
   @WebSocketServer()
   private server: Socket;

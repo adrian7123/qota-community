@@ -9,17 +9,25 @@ export class SocketService {
     const clientId = socket.id;
     this.connectedClients.set(clientId, socket);
 
-    console.log(clientId);
+    console.log('Connected ', clientId);
 
     socket.on('disconnect', () => {
-      console.log(clientId);
+      console.log('Disconnected ', clientId);
 
       this.connectedClients.delete(clientId);
     });
 
     socket.on('teste', (data: string): string => {
       console.log(data);
+
+      socket.local.emit('asd', data);
+
       return 'ssss';
+    });
+    socket.on('execute', (data: string) => {
+      console.log(data);
+
+      socket.local.emit('execute', data);
     });
   }
 }

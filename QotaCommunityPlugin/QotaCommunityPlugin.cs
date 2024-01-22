@@ -1,7 +1,10 @@
+using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
 using CounterStrikeSharp.API.Core.Attributes;
 using CounterStrikeSharp.API.Core.Attributes.Registration;
+using CounterStrikeSharp.API.Modules.Admin;
 using CounterStrikeSharp.API.Modules.Commands;
+using CounterStrikeSharp.API.Modules.Utils;
 using Microsoft.Extensions.Logging;
 using SocketIOClient;
 
@@ -20,31 +23,79 @@ public class QotaCommunityPlugin : BasePlugin
     Logger.LogInformation("Qota Community Plugin loading2!");
   }
 
-  [ConsoleCommand("socket", "This is an example command description")]
-  public async void OnCommand(CCSPlayerController? player, CommandInfo command)
-
+  [ConsoleCommand("qc_set_all_to_spec", "@Qota Community Set All Players to Spec")]
+  [RequiresPermissions("@css/admin")]
+  public void SetAllToSpecCommand(CCSPlayerController? _, CommandInfo command)
   {
-    Logger.LogInformation("Qota Community Plugin socket command init");
-
-    var client = new SocketIO("http://localhost:3000/");
-
-    Console.WriteLine(client.Connected);
-
-    client.OnConnected += async (sender, e) =>
+    try
     {
-      await client.EmitAsync("teste", "socket.io");
-    };
+      string[]? commands = command.ArgString.Split(" ");
 
-    await client.ConnectAsync();
+      Logger.LogInformation($"qc_set_all_to_spec Command Invoked");
 
-    Console.WriteLine(client.Connected);
+      var players = Utilities.GetPlayers();
 
-    Logger.LogInformation("Qota Community Plugin socket command end");
+      foreach (var player in players)
+      {
+        player.ChangeTeam(CsTeam.Spectator);
+      }
 
+    }
+    catch (Exception e)
+    {
+      Logger.LogError(e.Message);
+      command.ReplyToCommand(e.Message);
+    }
   }
 
-  public override void Unload(bool hotReload)
+  [ConsoleCommand("qc_change_team", "@Qota Community Change Player Team")]
+  [RequiresPermissions("@css/admin")]
+  public void ChangeTeamCommand(CCSPlayerController? _, CommandInfo command)
   {
-    Logger.LogInformation("Qota Community Plugin unloading!");
+    try
+    {
+      string[]? commands = command.ArgString.Split(" ");
+
+      int playerID = int.Parse(commands[0]);
+      string team = commands[1];
+
+      Logger.LogInformation($"change_team Command Invoked player: {playerID} team: {team}");
+
+      var player = new CCSPlayerController(NativeAPI.GetEntityFromIndex(playerID + 1));
+
+      switch (team)
+      {
+        case "c":
+        case "ct":
+          {
+            player.ChangeTeam(CsTeam.CounterTerrorist);
+            break;
+          }
+        case "t":
+        case "tr":
+          {
+            player.ChangeTeam(CsTeam.Terrorist);
+            break;
+          }
+        case "s":
+        case "spec":
+          {
+            player.ChangeTeam(CsTeam.Spectator);
+            break;
+          }
+        default:
+          {
+            command.ReplyToCommand("Parâmetros Incorretos");
+            command.ReplyToCommand("Ex: change_team 1 ct");
+            break;
+          }
+      }
+
+    }
+    catch (Exception e)
+    {
+      Logger.LogError(e.Message);
+      command.ReplyToCommand(e.Message);
+    }
   }
 }
