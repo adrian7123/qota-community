@@ -17,17 +17,8 @@ export class SocketService {
       this.connectedClients.delete(clientId);
     });
 
-    socket.on('teste', (data: string): string => {
+    socket.on('kill', (data: string) => {
       console.log(data);
-
-      socket.local.emit('asd', data);
-
-      return 'ssss';
-    });
-    socket.on('execute', (data: string) => {
-      console.log(data);
-
-      socket.local.emit('execute', data);
     });
   }
 }
