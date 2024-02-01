@@ -16,9 +16,5 @@ export class SocketService {
 
       this.connectedClients.delete(clientId);
     });
-
-    socket.on('kill', (data: string) => {
-      console.log(data);
-    });
   }
 }

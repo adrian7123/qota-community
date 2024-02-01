@@ -7,7 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { PlayerModule } from './player/player.module';
 
 @Module({
-  imports: [SocketModule, AdminsModule, AuthModule, PlayerModule],
+  imports: [AdminsModule, AuthModule, PlayerModule, SocketModule],
   controllers: [AppController],
   providers: [AppService],
 })
