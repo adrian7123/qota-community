@@ -22,6 +22,9 @@ model Player {
   discordID String? @unique
 
   score Int @default(0)
+
+  kills  Int @default(0)
+  deaths Int @default(0)
 }
 
 model Admin {

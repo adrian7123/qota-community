@@ -109,14 +109,14 @@ export const PlayersTable = ({ data: rows }) => {
                   sx={{ cursor: "pointer" }}
                 >
                   <TableCell></TableCell>
-                  <TableCell id={labelId} scope="row" padding="none">
+                  {/* <TableCell id={labelId} scope="row" padding="none">
                     <Text>{row.id}</Text>
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell id={labelId} scope="row" padding="none">
                     <Grid container className="flex items-center">
                       <Avatar
                         className="mr-5"
-                        src={`${row.steam_data.avatar}`}
+                        src={`${row.avatar}`}
                         aria-haspopup="true"
                         color="inherit"
                       />{" "}
@@ -124,7 +124,7 @@ export const PlayersTable = ({ data: rows }) => {
                     </Grid>
                   </TableCell>
                   <TableCell>
-                    <Text>{row.points}</Text>
+                    <Text>{row.score}</Text>
                   </TableCell>
                   <TableCell>
                     <Text>{row.kills}</Text>
@@ -132,9 +132,9 @@ export const PlayersTable = ({ data: rows }) => {
                   <TableCell>
                     <Text>{row.deaths}</Text>
                   </TableCell>
-                  {/* <TableCell>
-                    <img src={`assets/ranks/${row.rank}.png`} />
-                  </TableCell> */}
+                  <TableCell>
+                    <img src={`assets/ranks/${row.rank ?? 0}.png`} />
+                  </TableCell>
                   <TableCell>
                     <Text>{row.kd}</Text>
                   </TableCell>

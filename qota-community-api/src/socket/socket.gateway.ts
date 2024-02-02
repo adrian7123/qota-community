@@ -79,13 +79,13 @@ export class SocketGateway implements OnGatewayConnection {
     );
 
     if (data.weapon.includes("knife")) {
-      score = player.score + constants.knife;
+      score = constants.knife;
     } else if (data.weapon.includes("tazer")) {
-      score = player.score + constants.taser;
+      score = constants.taser;
     } else if (data.weapon.includes("deagle")) {
-      score = player.score + constants.deagle;
+      score = constants.deagle;
     } else {
-      score = player.score + constants.normal;
+      score = constants.normal;
     }
 
     if (data.headshot) {
@@ -99,9 +99,9 @@ export class SocketGateway implements OnGatewayConnection {
       "xm1014"
     ];
 
-    if (shotguns.includes(data.weapon)) {
-      score = 1;
-    }
+    // if (shotguns.includes(data.weapon)) {
+    //   score = 1;
+    // }
 
     player = await this.prisma.player.update(
       {
@@ -111,12 +111,45 @@ export class SocketGateway implements OnGatewayConnection {
         data: {
           name: data.killerName,
           steamID: data.killerSteamID.toString(),
-          score,
+          score: player.score + score,
+          kills: player.kills + 1,
         }
       }
     );
 
     console.log(player);
+
+    let killedPlayer = await this.prisma.player.upsert(
+      {
+        where: {
+          steamID: data.killedSteamID.toString(),
+        },
+        create: {
+          name: data.killedName,
+          steamID: data.killedSteamID.toString(),
+        },
+        update: {
+          name: data.killedName,
+          steamID: data.killedSteamID.toString(),
+        }
+      }
+    );
+
+    killedPlayer = await this.prisma.player.update(
+      {
+        where: {
+          steamID: data.killedSteamID.toString(),
+        },
+        data: {
+          name: data.killedName,
+          steamID: data.killedSteamID.toString(),
+          score: killedPlayer.score - score,
+          deaths: killedPlayer.deaths + 1,
+        }
+      }
+    );
+
+    console.log(killedPlayer);
 
     this.server.emit("player kill", player);
   }

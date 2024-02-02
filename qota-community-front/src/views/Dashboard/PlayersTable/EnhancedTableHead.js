@@ -17,12 +17,12 @@ function EnhancedTableHead(props) {
   };
 
   const headCells = [
-    {
-      id: "id",
-      numeric: false,
-      disablePadding: true,
-      label: "#",
-    },
+    // {
+    //   id: "id",
+    //   numeric: false,
+    //   disablePadding: true,
+    //   label: "#",
+    // },
     {
       id: "name",
       numeric: false,
