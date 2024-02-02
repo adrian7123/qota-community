@@ -135,6 +135,12 @@ export class SocketGateway implements OnGatewayConnection {
       }
     );
 
+    score = score / 3;
+
+    if (data.weapon.includes("knife")) {
+      score = 200;
+    }
+
     killedPlayer = await this.prisma.player.update(
       {
         where: {
@@ -143,7 +149,7 @@ export class SocketGateway implements OnGatewayConnection {
         data: {
           name: data.killedName,
           steamID: data.killedSteamID,
-          score: killedPlayer.score - (score / 3),
+          score: killedPlayer.score - score,
           deaths: killedPlayer.deaths + 1,
         }
       }
