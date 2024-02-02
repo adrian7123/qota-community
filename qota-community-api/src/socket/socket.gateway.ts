@@ -143,7 +143,7 @@ export class SocketGateway implements OnGatewayConnection {
         data: {
           name: data.killedName,
           steamID: data.killedSteamID,
-          score: killedPlayer.score - score,
+          score: killedPlayer.score - (score / 3),
           deaths: killedPlayer.deaths + 1,
         }
       }
