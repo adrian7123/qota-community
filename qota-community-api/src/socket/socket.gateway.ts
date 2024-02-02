@@ -33,15 +33,15 @@ export class SocketGateway implements OnGatewayConnection {
 
     const player = await this.prisma.player.upsert({
       where: {
-        steamID: data.steamID.toString(),
+        steamID: data.steamID,
       },
       create: {
         name: data.name,
-        steamID: data.steamID.toString(),
+        steamID: data.steamID,
       },
       update: {
         name: data.name,
-        steamID: data.steamID.toString(),
+        steamID: data.steamID,
       }
     });
 
@@ -65,15 +65,15 @@ export class SocketGateway implements OnGatewayConnection {
     let player = await this.prisma.player.upsert(
       {
         where: {
-          steamID: data.killerSteamID.toString(),
+          steamID: data.killerSteamID,
         },
         create: {
           name: data.killerName,
-          steamID: data.killerSteamID.toString(),
+          steamID: data.killerSteamID,
         },
         update: {
           name: data.killerName,
-          steamID: data.killerSteamID.toString(),
+          steamID: data.killerSteamID,
         }
       }
     );
@@ -106,11 +106,11 @@ export class SocketGateway implements OnGatewayConnection {
     player = await this.prisma.player.update(
       {
         where: {
-          steamID: data.killerSteamID.toString(),
+          steamID: data.killerSteamID,
         },
         data: {
           name: data.killerName,
-          steamID: data.killerSteamID.toString(),
+          steamID: data.killerSteamID,
           score: player.score + score,
           kills: player.kills + 1,
         }
@@ -122,27 +122,33 @@ export class SocketGateway implements OnGatewayConnection {
     let killedPlayer = await this.prisma.player.upsert(
       {
         where: {
-          steamID: data.killedSteamID.toString(),
+          steamID: data.killedSteamID,
         },
         create: {
           name: data.killedName,
-          steamID: data.killedSteamID.toString(),
+          steamID: data.killedSteamID,
         },
         update: {
           name: data.killedName,
-          steamID: data.killedSteamID.toString(),
+          steamID: data.killedSteamID,
         }
       }
     );
 
+    score = score / 3;
+
+    if (data.weapon.includes("knife")) {
+      score = 200;
+    }
+
     killedPlayer = await this.prisma.player.update(
       {
         where: {
-          steamID: data.killedSteamID.toString(),
+          steamID: data.killedSteamID,
         },
         data: {
           name: data.killedName,
-          steamID: data.killedSteamID.toString(),
+          steamID: data.killedSteamID,
           score: killedPlayer.score - score,
           deaths: killedPlayer.deaths + 1,
         }

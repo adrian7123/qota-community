@@ -1,12 +1,12 @@
 export interface IPlayerConnected {
   name: string;
-  steamID: number;
+  steamID: string;
 }
 export interface IPlayerKill {
   killedName: string;
-  killedSteamID: number;
+  killedSteamID: string;
   killerName: string;
-  killerSteamID: number;
+  killerSteamID: string;
   headshot: boolean;
   weapon: string;
 }
