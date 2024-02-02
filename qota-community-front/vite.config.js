@@ -6,6 +6,12 @@ import * as fs from "node:fs/promises";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  preview: {
+    port: 8083,
+  },
+  server: {
+    host: "0.0.0.0",
+  },
   plugins: [
     react(),
     svgr({
