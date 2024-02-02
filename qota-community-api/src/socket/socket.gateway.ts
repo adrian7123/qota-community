@@ -56,6 +56,10 @@ export class SocketGateway implements OnGatewayConnection {
 
     console.log(data);
 
+    if (data.killedSteamID === data.killerSteamID) {
+      return;
+    }
+
     let score = 0;
 
     let player = await this.prisma.player.upsert(
@@ -86,6 +90,17 @@ export class SocketGateway implements OnGatewayConnection {
 
     if (data.headshot) {
       score += constants.headshot;
+    }
+
+    const shotguns = [
+      "mag7",
+      "sawedoff",
+      "nova",
+      "xm1014"
+    ];
+
+    if (shotguns.includes(data.weapon)) {
+      score = 1;
     }
 
     player = await this.prisma.player.update(
