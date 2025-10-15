@@ -1,5 +1,5 @@
 # Dockerfile para CS2 Server - Qota Community
-FROM joedwards32/cs2:latest
+FROM ubuntu:latest
 
 # Definir usuário steam
 USER steam
