@@ -1,8 +1,6 @@
 services:
   cs2-server:
-    build:
-      context: .
-      dockerfile: cs2.Dockerfile
+    build: .
     restart: unless-stopped
     volumes:
       - /home/csgo/cs2:/home/steam/cs2 # Mapeamento direto para o diretório do servidor
