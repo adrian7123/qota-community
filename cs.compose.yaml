@@ -5,23 +5,10 @@ services:
     image: cm2network/csgo:latest
     container_name: csgo-server-1
     restart: unless-stopped
-    environment:
-      - SRCDS_TOKEN=${SRCDS_TOKEN:-} # Token do servidor Steam (opcional)
-      - SRCDS_RCONPW=changeme123 # Senha do RCON
-      - SRCDS_PW= # Senha do servidor (deixe vazio para público)
-      - SRCDS_FPSMAX=300 # FPS máximo
-      - SRCDS_TICKRATE=128 # Tickrate do servidor
-      - SRCDS_MAXPLAYERS=32 # Número máximo de jogadores
-      - SRCDS_STARTMAP=de_dust2 # Mapa inicial
-      - SRCDS_REGION=3 # Região do servidor (3 = Europa)
-      - SRCDS_MAPGROUP=mg_active # Grupo de mapas
-      - SRCDS_GAMETYPE=0 # Tipo de jogo (0 = Classic Casual)
-      - SRCDS_GAMEMODE=1 # Modo de jogo (1 = Competitive)
-      - SRCDS_HOSTNAME=QOTA Community CS:GO Server 1 # Nome do servidor
     ports:
-      - "28000:27015" # Porta principal do servidor
-      - "28000:27015/udp" # Porta UDP
-      - "27020:27020/udp" # Porta SourceTV
+      - "28000:28000" # Porta principal do servidor
+      - "28000:28000/udp" # Porta UDP
+      - "28020:27020/udp" # Porta SourceTV
     volumes:
       - /home/ubuntu/csgo:/home/steam/csgo-dedicated # Mapeamento direto para o diretório do servidor
     networks:
