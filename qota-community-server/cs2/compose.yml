@@ -1,9 +1,9 @@
 services:
   cs2-server:
-    build: .
+    image: joedwards32/cs2:latest
     restart: unless-stopped
     volumes:
-      - /home/csgo/cs2:/home/steam/cs2 # Mapeamento direto para o diretório do servidor
+      - /home/csgo/cs2:/home/steam/cs2-dedicated/
     networks:
       - csgo-network
 
