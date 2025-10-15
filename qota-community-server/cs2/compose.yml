@@ -1,0 +1,14 @@
+services:
+  cs2-server:
+    build:
+      context: .
+      dockerfile: cs2.Dockerfile
+    restart: unless-stopped
+    volumes:
+      - /home/csgo/cs2:/home/steam/cs2 # Mapeamento direto para o diretório do servidor
+    networks:
+      - csgo-network
+
+networks:
+  csgo-network:
+    driver: bridge
