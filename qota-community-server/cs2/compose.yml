@@ -23,7 +23,11 @@ services:
       - SRCDS_MAPGROUP=${SRCDS_MAPGROUP:-mg_active}
       - SRCDS_ADDITIONAL_ARGS=${SRCDS_ADDITIONAL_ARGS:-}
       - SRCDS_MOD=${SRCDS_MOD:-}
-
+    ports:
+      - 28000:27015/udp
+      - 28000:27015/tcp
+      - 28020:27020/udp
+      - 28020:27020/tcp
     volumes:
       - /home/ubuntu/cs2:/home/steam/cs2-dedicated/
     networks:
