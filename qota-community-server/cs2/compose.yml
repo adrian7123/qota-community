@@ -4,6 +4,26 @@ services:
     restart: unless-stopped
     environment:
       - SRCDS_TOKEN=${SRCDS_TOKEN:-}
+      - SRCDS_RCONPW=${SRCDS_RCONPW:-changeme}
+      - SRCDS_PW=${SRCDS_PW:-}
+      - SRCDS_PORT=${SRCDS_PORT:-27015}
+      - SRCDS_TV_PORT=${SRCDS_TV_PORT:-27020}
+      - SRCDS_MAXPLAYERS=${SRCDS_MAXPLAYERS:-16}
+      - SRCDS_MAP=${SRCDS_MAP:-de_dust2}
+      - SRCDS_GAMEMODE=${SRCDS_GAMEMODE:-casual}
+      - SRCDS_REGION=${SRCDS_REGION:-0}
+      - SRCDS_FPSMAX=${SRCDS_FPSMAX:-300}
+      - SRCDS_FRIENDLYFIRE=${SRCDS_FRIENDLYFIRE:-0}
+      - SRCDS_AUTOTEAMBALANCE=${SRCDS_AUTOTEAMBALANCE:-1}
+      - SRCDS_LAN=${SRCDS_LAN:-0}
+      - SRCDS_NOSPAWNENTITIES=${SRCDS_NOSPAWNENTITIES:-0}
+      - SRCDS_HOSTNAME=${SRCDS_HOSTNAME:-CS2 Dedicated Server}
+      - SRCDS_WORKSHOP_COLLECTION=${SRCDS_WORKSHOP_COLLECTION:-}
+      - SRCDS_STARTMAP=${SRCDS_STARTMAP:-de_dust2}
+      - SRCDS_MAPGROUP=${SRCDS_MAPGROUP:-mg_active}
+      - SRCDS_ADDITIONAL_ARGS=${SRCDS_ADDITIONAL_ARGS:-}
+      - SRCDS_MOD=${SRCDS_MOD:-}
+
     volumes:
       - /home/ubuntu/cs2:/home/steam/cs2-dedicated/
     networks:
