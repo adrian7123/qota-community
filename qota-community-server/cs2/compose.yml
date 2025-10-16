@@ -2,6 +2,8 @@ services:
   cs2-server:
     image: joedwards32/cs2:latest
     restart: unless-stopped
+    environment:
+      - SRCDS_TOKEN=${SRCDS_TOKEN:-}
     volumes:
       - /home/ubuntu/cs2:/home/steam/cs2-dedicated/
     networks:
