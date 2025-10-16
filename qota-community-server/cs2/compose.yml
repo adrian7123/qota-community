@@ -37,6 +37,9 @@ services:
       - 28000:27015/tcp
       - 28020:27020/udp
       - 28020:27020/tcp
+      - "27022:22/tcp" # SSH
+    stdin_open: true
+    tty: true
     volumes:
       - /home/ubuntu/cs2:/home/steam/cs2-dedicated/
     networks:
