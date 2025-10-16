@@ -37,7 +37,7 @@ services:
       - 28000:27015/tcp
       - 28020:27020/udp
       - 28020:27020/tcp
-      - "27022:22/tcp" # SSH
+      - 28022:22/tcp
     stdin_open: true
     tty: true
     volumes:
