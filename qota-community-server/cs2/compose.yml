@@ -41,7 +41,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - /home/ubuntu/cs2:/home/steam/cs2-dedicated/
+      - ${CS2_PATH:-/home/ubuntu/cs2}:/home/steam/cs2-dedicated/
     networks:
       - csgo-network
 
